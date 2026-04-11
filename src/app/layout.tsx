@@ -32,6 +32,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nexgen-elit-website.vercel.app"),
   title: {
     default: seoConfig.defaultTitle,
     template: seoConfig.titleTemplate,
@@ -42,8 +43,7 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "Nexgen Elit",
   },
-  description:
-    "Nexgen Elit - India's first logistics-dedicated digital technology company. We build systems that make logistics companies visible, structured, and chosen.",
+  description: seoConfig.description,
   keywords: [
     'logistics technology company India',
     'freight management software',
@@ -73,16 +73,19 @@ export const metadata: Metadata = {
     url: "https://nexgenelit.com",
     siteName: "Nexgen Elit",
     title: seoConfig.defaultTitle,
-    description:
-      "Nexgen Elit - India's first logistics-dedicated digital technology company. We build systems that make logistics companies visible, structured, and chosen.",
-    images: [{ url: seoConfig.ogImage, width: 1200, height: 630 }],
+    description: seoConfig.description,
+    images: [{ 
+      url: seoConfig.ogImage, 
+      width: 1200, 
+      height: 630,
+      alt: "Nexgen Elit - Systems That Run Logistics Companies" 
+    }],
   },
   twitter: {
     card: "summary_large_image",
     site: seoConfig.twitterHandle,
     title: seoConfig.defaultTitle,
-    description:
-      "Nexgen Elit - India's first logistics-dedicated digital technology company. We build systems that make logistics companies visible, structured, and chosen.",
+    description: seoConfig.description,
     images: [seoConfig.ogImage],
   },
 };

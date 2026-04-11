@@ -1,7 +1,7 @@
 export const seoConfig = {
   titleTemplate: '%s | Nexgen Elit',
-  defaultTitle: 'Nexgen Elit - Logistics Digital Technology',
-  description: 'We turn operationally strong logistics companies into digitally visible, contract-winning machines.',
-  ogImage: '/og-default.png',
+  defaultTitle: 'Nexgen Elit | Systems That Run Logistics Companies',
+  description: 'Still running logistics on calls, sheets, and chaos? We build TMS, WMS, and automation that makes operations visible, structured, and scalable.',
+  ogImage: '/logo.gif',
   twitterHandle: '@nexgenelit',
 };
