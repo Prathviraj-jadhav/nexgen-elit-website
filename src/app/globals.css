@@ -1,0 +1,847 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Tailwind CSS v4 Configuration - Ignore IDE warnings for @custom-variant and @theme */
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-montserrat);
+  --font-body: var(--font-montserrat);
+  --font-heading: var(--font-montserrat);
+  --font-display: var(--font-instrument-serif);
+  --font-brand: var(--font-poppins);
+  --font-serif: var(--font-instrument-serif);
+  --font-mono: var(--font-montserrat);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-border: var(--border);
+
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+  --color-surface: var(--paper);
+  --color-text-primary: var(--ink);
+  --color-muted: var(--muted-text);
+  --color-stroke: var(--border-light);
+
+  --color-highlight: var(--highlight);
+  --color-accent: var(--accent);
+}
+
+/* ============================================
+   DESIGN TOKENS - Light Theme
+   ============================================ */
+:root {
+  --bg: #FFFFFF;
+  --bg-2: #F7F8FA;
+  --bg-3: #EEF0F3;
+  --paper: #FFFFFF;
+  --ink: #000000;
+  --muted: #6B7280;
+  --muted-text: #6B7280;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-light: rgba(0, 0, 0, 0.12);
+  --border-hover: rgba(0, 0, 0, 0.2);
+  --accent: #2A3AFF;
+  --highlight: rgba(42, 58, 255, 0.08);
+
+  --background: #FFFFFF;
+  --foreground: #000000;
+  --primary: #2A3AFF;
+  --primary-foreground: #FFFFFF;
+
+  /* Transition system */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Spacing Scale - UI/UX Pro Max */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Border Radii - UI/UX Pro Max (Reintroducing radius for premium feel) */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* Neutral Scale - UI/UX Pro Max */
+  --gray-hsl-50: 210 20% 98%;
+  --gray-hsl-100: 220 16% 96%;
+  --gray-hsl-200: 220 14% 91%;
+  --gray-hsl-300: 215 12% 84%;
+  --gray-hsl-400: 218 11% 65%;
+  --gray-hsl-500: 220 9% 46%;
+  --gray-hsl-600: 215 14% 34%;
+  --gray-hsl-700: 217 19% 27%;
+  --gray-hsl-800: 215 28% 17%;
+  --gray-hsl-900: 220 40% 10%;
+  --gray-hsl-950: 224 71% 4%;
+
+  /* Color Semantic Tokens */
+  --color-brand-primary: hsl(220 90% 56%);
+  --color-brand-secondary: hsl(264 84% 62%);
+  --color-success: hsl(152 72% 40%);
+  --color-error: hsl(4 84% 56%);
+}
+
+@layer base {
+  * {
+    border-radius: var(--radius-sm);
+    /* Default small radius for premium feel, override where needed */
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-montserrat), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+h1,
+.h1 {
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  color: var(--ink);
+  font-family: var(--font-poppins), sans-serif;
+}
+
+h2,
+.h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+  color: var(--ink);
+  font-family: var(--font-poppins), sans-serif;
+}
+
+h3,
+.h3 {
+  font-size: clamp(22px, 3vw, 28px);
+  line-height: 1.2;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+h4,
+.h4 {
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* ============================================
+   SECTION DEFAULTS
+   ============================================ */
+section {
+  padding: 80px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.section-padding {
+  padding: 96px 0;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 128px 0;
+  }
+}
+
+.grid-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (min-width: 768px) {
+  .grid-container {
+    padding: 0 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-container {
+    padding: 0 64px;
+  }
+}
+
+/* ============================================
+   GLOBAL UTILITIES
+   ============================================ */
+@layer components {
+  /* Hero Section Contrast Fix: Forces white text for content on dark backgrounds */
+  .hero-dark-text,
+  .hero-dark-text h1,
+  .hero-dark-text h2,
+  .hero-dark-text h3,
+  .hero-dark-text p,
+  .hero-dark-text span:not(.accent-text) {
+    color: #FFFFFF !important;
+  }
+}
+
+/* ============================================
+   HIGHLIGHTED PHRASES
+   ============================================ */
+@layer components {}
+
+/* ============================================
+   TEXT GRADIENT - Blue
+   ============================================ */
+.text-gradient-blue {
+  background: linear-gradient(135deg, #2A3AFF 0%, #6B7BFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   FADE IN ON SCROLL
+   ============================================ */
+@layer utilities {
+  .fade {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+  }
+
+  .fade.show {
+    opacity: 1;
+    transform: none;
+  }
+
+  .fade-delay-1 {
+    transition-delay: 0.1s;
+  }
+
+  .fade-delay-2 {
+    transition-delay: 0.2s;
+  }
+
+  .fade-delay-3 {
+    transition-delay: 0.3s;
+  }
+
+  .fade-delay-4 {
+    transition-delay: 0.4s;
+  }
+}
+
+/* ============================================
+   ACCENT GRADIENT
+   ============================================ */
+@layer components {
+  .accent-gradient {
+    background: linear-gradient(90deg, #2A3AFF 0%, #6B7BFF 100%);
+  }
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
+@keyframes scroll-down {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(200%);
+    opacity: 0;
+  }
+}
+
+@keyframes role-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes loading-progress {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes fade-out-up {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@layer utilities {
+  .animate-scroll-down {
+    animation: scroll-down 1.5s ease-in-out infinite;
+  }
+
+  .animate-role-fade-in {
+    animation: role-fade-in 0.4s ease-out;
+  }
+
+  .animate-gradient-shift {
+    animation: gradient-shift 6s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  .animate-loading-progress {
+    animation: loading-progress 1200ms ease-out forwards;
+  }
+
+  .animate-fade-out-up {
+    animation: fade-out-up 400ms ease-out forwards;
+  }
+}
+
+/* ============================================
+   BUTTON - PRIMARY (No radius, sharp)
+   ============================================ */
+@layer components {
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    color: #FFFFFF;
+    background: #2A3AFF;
+    font-family: var(--font-montserrat), sans-serif;
+    border-radius: 0;
+  }
+
+  .btn-primary:hover {
+    background: #000000;
+    color: #FFFFFF;
+    filter: none;
+    transform: none;
+  }
+
+  .btn-primary:active {
+    transform: scale(0.97);
+  }
+
+  .btn-primary span {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* ============================================
+   BUTTON - SECONDARY (Outline, navy gradient hover)
+   ============================================ */
+@layer components {
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    background: transparent;
+    border-radius: 0;
+  }
+
+  .btn-secondary:hover {
+    background: #000000;
+    border-color: #000000;
+    color: #FFFFFF;
+  }
+
+  .btn-secondary:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ============================================
+   BUTTON - ACCENT (Blue CTA, uppercase)
+   ============================================ */
+@layer components {
+  .btn-accent {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #2A3AFF;
+    color: #FFFFFF;
+    font-family: var(--font-montserrat), sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    border-radius: 0;
+    padding: 10px 20px;
+  }
+
+  .btn-accent:hover {
+    background: #000000;
+    color: #FFFFFF;
+  }
+
+  .btn-accent:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ============================================
+   BUTTON - OUTLINE (navy gradient fill on hover)
+   ============================================ */
+@layer components {
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    background: transparent;
+    border-radius: 0;
+  }
+
+  .btn-outline:hover {
+    background: #000000;
+    border-color: #000000;
+    color: #FFFFFF;
+  }
+
+  .btn-outline:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ============================================
+   BUTTON - OUTLINE WHITE (for dark backgrounds)
+   ============================================ */
+@layer components {
+  .btn-outline-white {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #FFFFFF;
+    background: transparent;
+    border-radius: 0;
+  }
+
+  .btn-outline-white:hover {
+    background: #000000;
+    border-color: #000000;
+    color: #FFFFFF;
+  }
+
+  .btn-outline-white:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ============================================
+   NAVBAR - Light Mode
+   ============================================ */
+@layer components {
+  .nav-brutal {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-brutal a {
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+    transition: color var(--transition-base);
+  }
+
+  .nav-brutal a:hover {
+    color: #2A3AFF;
+  }
+}
+
+/* ============================================
+   SCROLLBAR - Light Mode
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* ============================================
+   SCROLLBAR HIDE UTILITY
+   ============================================ */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES - Light Theme
+   ============================================ */
+
+/* Mono label - small uppercase tracking text */
+.mono-label {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+
+/* Light card */
+.card-light {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0;
+}
+
+.card-light-hover {
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.card-light-hover:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Section divider */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* Status dot */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #2A3AFF;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Code block */
+.code-block {
+  background: #F7F8FA;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0;
+  padding: 16px;
+  font-family: var(--font-montserrat), monospace;
+  font-size: 12px;
+}
+
+/* ============================================
+   LOADING SCREEN - Light Mode
+   ============================================ */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.loading-screen-fade {
+  animation: fade-out-up 400ms ease-out forwards;
+}
+
+.loading-screen-text {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.5em;
+  color: #000000;
+}
+
+.loading-screen-bar {
+  width: 200px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-screen-bar-fill {
+  position: absolute;
+  inset: 0;
+  background: #2A3AFF;
+  animation: loading-progress 1200ms ease-out forwards;
+}
+
+/* ============================================
+   SCROLL INDICATOR (Hero)
+   ============================================ */
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.scroll-indicator-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-indicator-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #2A3AFF;
+  animation: scroll-down 1.5s ease-in-out infinite;
+}
+
+.scroll-indicator-text {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ============================================
+   BLOG TYPOGRAPHY SYSTEM - Light Theme
+   ============================================ */
+.blog-heading {
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 600;
+}
+
+.blog-body {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.blog-label {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.blog-content h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+  color: var(--ink);
+}
+
+.blog-content h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 2em;
+  margin-bottom: 0.8em;
+  color: var(--ink);
+}
+
+.blog-content p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 1.2em;
+}
+
+.blog-content blockquote {
+  border-left: 3px solid #2A3AFF;
+  padding: 16px 24px;
+  margin: 2em 0;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: rgba(42, 58, 255, 0.04);
+  border-radius: 0;
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin-bottom: 1.2em;
+  padding-left: 1.5em;
+}
+
+.blog-content li {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 0.5em;
+}
+
+.blog-content strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ============================================
+   UNICORN STUDIO WATERMARK HIDER
+   ============================================ */
+[data-us-project]+div>a[href*="unicorn.studio"],
+[data-us-project]~div a[href*="unicorn.studio"],
+#unicorn-studio-watermark,
+.us-watermark,
+a[href*="unicorn.studio"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}

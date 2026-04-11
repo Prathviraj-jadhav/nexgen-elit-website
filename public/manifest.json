@@ -1,0 +1,25 @@
+{
+  "name": "Nexgen Elit",
+  "short_name": "Nexgen",
+  "description": "Logistics Technology Partner",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#2A3AFF",
+  "icons": [
+    {
+      "src": "/nexgenelit.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/nexgen-elit-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "orientation": "portrait",
+  "scope": "/"
+}
