@@ -107,6 +107,12 @@ export default function RootLayout({
         {/* llm.txt AI crawler discovery link (llmstxt.org standard) */}
         <link rel="llms-txt" type="text/plain" href="https://nexgenelit.com/llm.txt" />
         <link rel="apple-touch-icon" href="/nexgenelit.png" />
+        {/* Google AdSense */}
+        <script 
+          async 
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7416978133348374"
+          crossOrigin="anonymous"
+        ></script>
         {/* Meta Pixel Code */}
         <script
           dangerouslySetInnerHTML={{
@@ -124,10 +130,33 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* Google Tag Manager */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-TQ8NSTJK');
+            `,
+          }}
+        />
+        {/* End Google Tag Manager */}
       </head>
       <body
         className={`${montserrat.variable} ${instrumentSerif.variable} ${poppins.variable} antialiased`}
       >
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe 
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TQ8NSTJK"
+            height="0" 
+            width="0" 
+            style={{ display: 'none', visibility: 'hidden' }}
+          ></iframe>
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
         <noscript>
           <img 
             height="1" 
