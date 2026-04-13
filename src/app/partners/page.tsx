@@ -276,7 +276,7 @@ export default function PartnersPage() {
 
           <ScrollReveal style="fadeUp" delay={0.16} once={false}>
             <BodyText className="mt-6 max-w-2xl">
-              Chartered Accountants who work with logistics businesses in India already know the conversation. Their clients  transport company owners, fleet operators, warehousing providers  come to them with questions about growth, visibility, and digital readiness. They ask: &ldquo;Should we get a website?&rdquo; &ldquo;We need software for our fleet.&rdquo; &ldquo;Corporate clients can&apos;t find us online.&rdquo;
+              Chartered Accountants who work with <span className="logistics-highlight">logistics businesses</span> in India already know the conversation. Their clients  transport company owners, fleet operators, warehousing providers  come to them with questions about growth, visibility, and digital readiness. They ask: &ldquo;Should we get a website?&rdquo; &ldquo;We need software for our fleet.&rdquo; &ldquo;Corporate clients can&apos;t find us online.&rdquo;
             </BodyText>
           </ScrollReveal>
 
@@ -419,7 +419,7 @@ export default function PartnersPage() {
 
           <ScrollReveal style="fadeUp" delay={0.16} once={false}>
             <BodyText className="mt-6 max-w-2xl">
-              Transport and logistics industry associations across India represent hundreds  sometimes thousands  of logistics businesses. Members look to their association for guidance, resources, and trusted recommendations. When it comes to digital transformation, technology adoption, and online credibility, most associations don&apos;t have a clear answer for members who ask: &ldquo;Who can help us?&rdquo;
+              Transport and logistics industry associations across India represent hundreds  sometimes thousands  of <span className="logistics-highlight">logistics businesses</span>. Members look to their association for guidance, resources, and trusted recommendations. When it comes to digital transformation, technology adoption, and online credibility, most associations don&apos;t have a clear answer for members who ask: &ldquo;Who can help us?&rdquo;
             </BodyText>
           </ScrollReveal>
 

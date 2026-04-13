@@ -10,9 +10,9 @@
   --font-sans: var(--font-montserrat);
   --font-body: var(--font-montserrat);
   --font-heading: var(--font-montserrat);
-  --font-display: var(--font-instrument-serif);
+  --font-display: var(--font-playfair-display);
   --font-brand: var(--font-poppins);
-  --font-serif: var(--font-instrument-serif);
+  --font-serif: var(--font-playfair-display);
   --font-mono: var(--font-montserrat);
 
   --color-primary: var(--primary);
@@ -231,7 +231,12 @@ section {
 /* ============================================
    HIGHLIGHTED PHRASES
    ============================================ */
-@layer components {}
+@layer components {
+  .logistics-highlight {
+    font-family: var(--font-playfair-display), serif !important;
+    font-style: italic !important;
+  }
+}
 
 /* ============================================
    TEXT GRADIENT - Blue

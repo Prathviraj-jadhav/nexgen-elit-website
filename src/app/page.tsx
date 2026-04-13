@@ -116,7 +116,7 @@ const INDUSTRIES = [
     tab: 'Railway Cargo Systems',
     title: 'Railway Cargo',
     icon: TrainFront,
-    description: 'Handle bulk cargo movement with structured systems. From scheduling to tracking, we help railway logistics businesses operate with better control and reliability.',
+    description: <>Handle bulk cargo movement with structured systems. From scheduling to tracking, we help railway <span className="logistics-highlight">logistics businesses</span> operate with better control and reliability.</>,
     image: TrainImg.src,
   },
 ];
@@ -211,7 +211,7 @@ function HeroSection() {
           {/* Main Heading */}
           <h1 className="hero-heading font-[family-name:var(--font-poppins)] font-semibold tracking-tight leading-[1.1] mb-3 sm:mb-4" style={{ color: '#FFFFFF' }}>
             One stop solutions for{' '}
-            <span className="font-[family-name:var(--font-poppins)] font-normal">
+            <span className="logistics-highlight font-normal">
               logistics businesses.
             </span>
           </h1>

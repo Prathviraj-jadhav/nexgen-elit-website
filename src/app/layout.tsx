@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Instrument_Serif, Poppins } from "next/font/google";
+import { Montserrat, Poppins, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import TabVisibilityTracker from "@/components/tab-visibility-tracker";
@@ -16,18 +16,18 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
-  style: "italic",
-  display: "swap",
-});
-
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+  display: "swap",
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair-display",
+  subsets: ["latin"],
+  style: "italic",
+  weight: "400",
   display: "swap",
 });
 
@@ -145,7 +145,7 @@ export default function RootLayout({
         {/* End Google Tag Manager */}
       </head>
       <body
-        className={`${montserrat.variable} ${instrumentSerif.variable} ${poppins.variable} antialiased`}
+        className={`${montserrat.variable} ${poppins.variable} ${playfairDisplay.variable} antialiased`}
       >
         {/* Google Tag Manager (noscript) */}
         <noscript>
