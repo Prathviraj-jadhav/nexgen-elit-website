@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 // Footer is now in SiteFooter via root layout
 import { Navbar } from '@/components/Navbar';
 import gsap from 'gsap';
@@ -43,30 +44,6 @@ gsap.registerPlugin(ScrollTrigger);
 const VIDEO_URL =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4';
 
-const PROJECT_CARDS = [
-  {
-    title: 'Freight Website Revamp',
-    image: '/project-automotive.jpg',
-    span: 'md:col-span-7',
-  },
-  {
-    title: '3PL Corporate Positioning',
-    image: '/project-branding.jpg',
-    span: 'md:col-span-5',
-  },
-  {
-    title: 'Fleet Visibility System',
-    image: '/project-architecture.jpg',
-    span: 'md:col-span-5',
-  },
-  {
-    title: 'Logistics Brand Authority',
-    image: '/project-portrait.jpg',
-    span: 'md:col-span-7',
-  },
-];
-
-
 
 const SYSTEMS_ROW_1 = [
   ['Freight Management', 'Shipment Tracking', 'Load Optimization', 'Carrier Selection', 'Freight Audit'],
@@ -93,7 +70,7 @@ const INDUSTRIES = [
     title: 'Airway Logistics',
     icon: Plane,
     description: 'Manage air cargo operations with speed and accuracy. From shipment tracking to airline coordination, we build systems that help logistics companies handle time-sensitive deliveries without delays.',
-    image: AirwaysImg.src,
+    image: AirwaysImg,
   },
   {
     id: 'waterway',
@@ -101,7 +78,7 @@ const INDUSTRIES = [
     title: 'Waterway Freight',
     icon: Ship,
     description: 'Streamline port operations, container tracking, and global shipments. Our systems help you manage large-volume freight with better visibility and fewer manual errors.',
-    image: ShipImg.src,
+    image: ShipImg,
   },
   {
     id: 'roadway',
@@ -109,7 +86,7 @@ const INDUSTRIES = [
     title: 'Roadway Transport',
     icon: Truck,
     description: 'Track fleets, optimize routes, and manage deliveries in real time. We help transport companies reduce delays, cut costs, and improve operational efficiency.',
-    image: TruckImg.src,
+    image: TruckImg,
   },
   {
     id: 'railway',
@@ -117,7 +94,7 @@ const INDUSTRIES = [
     title: 'Railway Cargo',
     icon: TrainFront,
     description: <>Handle bulk cargo movement with structured systems. From scheduling to tracking, we help railway <span className="logistics-highlight">logistics businesses</span> operate with better control and reliability.</>,
-    image: TrainImg.src,
+    image: TrainImg,
   },
 ];
 
@@ -195,6 +172,7 @@ function HeroSection() {
           muted
           loop
           playsInline
+          preload="none"
         />
         {/* Dark overlay - uniform black/45 across the full hero */}
         <div className="absolute inset-0 bg-black/45 z-[1]" />
@@ -452,7 +430,13 @@ function IndustryExpertiseSection() {
               }
               return (
                 <div key={industry.id} className="absolute inset-0 transition-all duration-700 ease-in-out" style={style}>
-                  <img src={industry.image} alt={industry.title} className="w-full h-full object-cover" />
+                  <Image
+                    src={industry.image}
+                    alt={industry.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                   <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.4), transparent)' }} />
                 </div>
               );
@@ -855,11 +839,13 @@ function TransformationSection() {
               Your business starts showing up where decisions happen search, vendor lists, and corporate evaluations. You&apos;re no longer chasing leads, you&apos;re part of the shortlist.
             </p>
             {/* Image placeholder area */}
-            <div className="tf-card-image  overflow-hidden bg-[#F7F8FA] aspect-[4/3] flex items-center justify-center">
-              <img
-                src={ChartsImg.src}
+            <div className="tf-card-image relative overflow-hidden bg-[#F7F8FA] aspect-[4/3] flex items-center justify-center">
+              <Image
+                src={ChartsImg}
                 alt="Visibility transformation charts"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </div>
@@ -877,11 +863,13 @@ function TransformationSection() {
               Your operations finally look as strong as they are. Clear systems, clean presentation, and a setup that makes corporate buyers take you seriously from the first glance.
             </p>
             {/* Image placeholder area */}
-            <div className="tf-card-image  overflow-hidden bg-[#F7F8FA] aspect-[4/3] flex items-center justify-center">
-              <img
-                src={BrandImg.src}
+            <div className="tf-card-image relative overflow-hidden bg-[#F7F8FA] aspect-[4/3] flex items-center justify-center">
+              <Image
+                src={BrandImg}
                 alt="Perception transformation branding"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </div>
@@ -1085,23 +1073,34 @@ function BeforeAfterSection() {
             onTouchEnd={() => setPosition(50)}
           >
             {/* BEFORE IMAGE (top layer - clipped from left) */}
-            <img
-              src={BeforeLandscape.src}
-              alt="Before - Current Logistics Landscape"
-              className="absolute top-0 left-0 w-full h-[400px] md:h-[600px] object-contain bg-white pointer-events-none block"
+            <div
+              className="absolute top-0 left-0 w-full h-[400px] md:h-[600px] bg-white pointer-events-none block overflow-hidden"
               style={{
                 clipPath: `inset(0 ${100 - position}% 0 0)`,
+                zIndex: 2,
               }}
-              draggable={false}
-            />
+            >
+              <Image
+                src={BeforeLandscape}
+                alt="Before - Current Logistics Landscape"
+                fill
+                className="object-contain"
+                priority
+                draggable={false}
+              />
+            </div>
 
             {/* AFTER IMAGE (background layer - visible as clipped layer shrinks) */}
-            <img
-              src={AfterLandscape.src}
-              alt="After - Nexgen-enabled Operations"
-              className="w-full h-[400px] md:h-[600px] object-contain bg-white pointer-events-none block"
-              draggable={false}
-            />
+            <div className="relative w-full h-[400px] md:h-[600px] bg-white pointer-events-none block overflow-hidden">
+              <Image
+                src={AfterLandscape}
+                alt="After - Nexgen-enabled Operations"
+                fill
+                className="object-contain"
+                priority
+                draggable={false}
+              />
+            </div>
 
             {/* DIVIDER LINE */}
             <div
@@ -1147,19 +1146,19 @@ function BeforeAfterSection() {
 
 const USE_CASE_SLIDES = [
   {
-    image: Scroll1.src,
+    image: Scroll1,
   },
   {
-    image: Scroll2.src,
+    image: Scroll2,
   },
   {
-    image: Scroll3.src,
+    image: Scroll3,
   },
   {
-    image: Scroll4.src,
+    image: Scroll4,
   },
   {
-    image: Scroll5.src,
+    image: Scroll5,
   },
 ];
 
@@ -1208,22 +1207,23 @@ function UseCasesSection() {
             }}
           >
             <AnimatePresence mode="wait">
-              <motion.img
+              <motion.div
                 key={`active-${activeIndex}`}
-                src={USE_CASE_SLIDES[activeIndex].image}
-                alt="Logistics platform"
-                className="w-full h-auto block"
-                style={{
-                  maxHeight: '520px',
-                  objectFit: 'cover',
-                  objectPosition: 'center center',
-                }}
-                draggable={false}
                 initial={{ x: 80 }}
                 animate={{ x: 0 }}
                 exit={{ x: -80 }}
                 transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
-              />
+                className="relative w-full aspect-[16/9] md:aspect-auto md:h-[520px]"
+              >
+                <Image
+                  src={USE_CASE_SLIDES[activeIndex].image}
+                  alt="Logistics platform"
+                  fill
+                  className="object-cover object-center"
+                  draggable={false}
+                  unoptimized // Keep GIFs animated
+                />
+              </motion.div>
             </AnimatePresence>
           </div>
 
@@ -1238,18 +1238,23 @@ function UseCasesSection() {
             }}
           >
             <AnimatePresence mode="wait">
-              <motion.img
+              <motion.div
                 key={`next-${nextIndex}`}
-                src={USE_CASE_SLIDES[nextIndex].image}
-                alt=""
-                className="w-full h-full object-cover block"
-                style={{ objectPosition: 'left center', opacity: 0.6 }}
-                draggable={false}
                 initial={{ x: 80 }}
                 animate={{ x: 0 }}
                 exit={{ x: -80 }}
                 transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
-              />
+                className="relative w-full h-full"
+              >
+                <Image
+                  src={USE_CASE_SLIDES[nextIndex].image}
+                  alt=""
+                  fill
+                  className="object-cover object-left opacity-60"
+                  draggable={false}
+                  unoptimized // Keep GIFs animated
+                />
+              </motion.div>
             </AnimatePresence>
           </div>
         </div>
@@ -1617,7 +1622,7 @@ const FEATURED_BLOGS = [
     readTime: "10 min",
     keyStat: "92%",
     keyLabel: "invisible to corporate buyers",
-    image: Blog1Img.src,
+    image: Blog1Img,
   },
   {
     slug: "ai-freight-quotation-system-60-seconds",
@@ -1627,7 +1632,7 @@ const FEATURED_BLOGS = [
     readTime: "11 min",
     keyStat: "60s",
     keyLabel: "response time",
-    image: Blog2Img.src,
+    image: Blog2Img,
   },
   {
     slug: "client-vendor-portal-logistics-stop-whatsapp-accounts",
@@ -1637,7 +1642,7 @@ const FEATURED_BLOGS = [
     readTime: "10 min",
     keyStat: "73%",
     keyLabel: "reject WhatsApp vendors",
-    image: Blog3Img.src,
+    image: Blog3Img,
   },
   {
     slug: "google-ads-logistics-campaigns-fail-corporate-inquiries",
@@ -1647,7 +1652,7 @@ const FEATURED_BLOGS = [
     readTime: "10 min",
     keyStat: "₹14.2L",
     keyLabel: "wasted per year",
-    image: Blog4Img.src,
+    image: Blog4Img,
   },
   {
     slug: "website-design-logistics-corporate-procurement-needs",
@@ -1657,7 +1662,7 @@ const FEATURED_BLOGS = [
     readTime: "8 min",
     keyStat: "90s",
     keyLabel: "to pass evaluation",
-    image: Blog5Img.src,
+    image: Blog5Img,
   },
   {
     slug: "fleet-management-systems-india-guide",
@@ -1667,7 +1672,7 @@ const FEATURED_BLOGS = [
     readTime: "5 min",
     keyStat: null,
     keyLabel: null,
-    image: Blog6Img.src,
+    image: Blog6Img,
   },
 ];
 
@@ -1716,10 +1721,12 @@ function BlogBentoSection() {
               >
                 {/* Image */}
                 <div className="relative overflow-hidden h-44 md:h-52">
-                  <img
+                  <Image
                     src={blog.image}
                     alt={blog.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300" />
                   {/* Key stat badge */}

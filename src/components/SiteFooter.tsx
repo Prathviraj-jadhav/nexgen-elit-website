@@ -22,6 +22,7 @@ export function SiteFooter() {
             muted
             loop
             playsInline
+            preload="none"
           />
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/60 z-[1]" />

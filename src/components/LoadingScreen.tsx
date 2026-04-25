@@ -1,45 +1,58 @@
 'use client';
 
-import { useState, useEffect, useSyncExternalStore } from 'react';
-
-function getHasLoaded(): string | null {
-  if (typeof window === 'undefined') return null;
-  return sessionStorage.getItem('nexgen-loading-done');
-}
+import { useEffect, useState } from 'react';
 
 export default function LoadingScreen() {
-  const hasLoaded = useSyncExternalStore(
-    (cb) => {
-      window.addEventListener('storage', cb);
-      return () => window.removeEventListener('storage', cb);
-    },
-    getHasLoaded,
-    () => null
-  );
-  const [fading, setFading] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (hasLoaded) return;
+    // Skip loading screen on return visits (session already loaded)
+    if (typeof window !== 'undefined') {
+      const hasLoaded = sessionStorage.getItem('nexgen-loading-done');
+      if (hasLoaded) return;
+    }
 
+    // Show the loading screen
+    setVisible(true);
+
+    // Fade out after 400ms, fully remove after 700ms
     const fadeTimer = setTimeout(() => {
-      setFading(true);
-    }, 1200);
+      const el = document.getElementById('nexgen-loading-screen');
+      if (el) el.style.opacity = '0';
+    }, 400);
 
     const removeTimer = setTimeout(() => {
-      sessionStorage.setItem('nexgen-loading-done', 'true');
-      setFading(false);
-    }, 1600);
+      setVisible(false);
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('nexgen-loading-done', 'true');
+      }
+    }, 700);
 
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(removeTimer);
     };
-  }, [hasLoaded]);
+  }, []);
 
-  if (hasLoaded || !fading) return null;
+  if (!visible) return null;
 
   return (
-    <div className={fading ? 'loading-screen loading-screen-fade' : 'loading-screen'}>
+    <div
+      id="nexgen-loading-screen"
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 9999,
+        background: '#FFFFFF',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '32px',
+        transition: 'opacity 300ms ease-out',
+        opacity: 1,
+      }}
+    >
       <div className="loading-screen-text">NEXGEN ELIT</div>
       <div className="loading-screen-bar">
         <div className="loading-screen-bar-fill" />
